@@ -25,13 +25,13 @@ public class Nutricionista {
         
         con = Conexion.getConexion();
         
-        Paciente uno= new Paciente("juan","gonzalez",33224455,"rojas 2323",234563242);
+        Paciente uno= new Paciente(2,"JAVIER","gonzalez",34332910,"SAN MARTIN 12",234563242);
         
-        PacienteData crear= new PacienteData();
+        PacienteData pac= new PacienteData();
         
-        //crear.guardarPaciente(uno);
-        crear.modificarPaciente(uno);
-        
+        //pac.guardarPaciente(uno);
+        //pac.modificarPaciente(uno);
+        pac.eliminarPaciente(34332910);
     }
     
 }

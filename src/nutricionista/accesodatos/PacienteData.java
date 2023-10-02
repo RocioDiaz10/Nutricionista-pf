@@ -52,27 +52,48 @@ public class PacienteData {
     }
     
     
-    public void modificarPaciente(Paciente paciente){
-        
-        String sql = "UPDATE paciente SET nombre = ?, apellido= ?, dni= ?, domicilio=?, celular=? "
+    public void modificarPaciente(Paciente paciente) {
+
+        String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, celular = ? "
                 + "WHERE id_paciente = ?";
-        
-     try {
-         PreparedStatement ps= con.prepareStatement(sql);
-         ps.setString(1, paciente.getNombre());
-         ps.setString(2, paciente.getApellido());
-         ps.setInt(3, paciente.getDni());
-         ps.setString(4, paciente.getDomicilio());
-         ps.setInt(5, paciente.getCelular());
-          int exito= ps.executeUpdate();
-          if(exito== 1){
-                JOptionPane.showMessageDialog(null,"Modificacion realizada");
+
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setString(1, paciente.getNombre());
+            ps.setString(2, paciente.getApellido());
+            ps.setInt(3, paciente.getDni());
+            ps.setString(4, paciente.getDomicilio());
+            ps.setInt(5, paciente.getCelular());
+            ps.setInt(6, paciente.getId_paciente());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificacion realizada");
             }
-         
-     } catch (SQLException ex) {
-     JOptionPane.showMessageDialog(null,"no se pudo ingresar a la tabla paciente1111");
-     }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla paciente");
+        }
+
+    }
+    
+    public void eliminarPaciente(int dni){
         
+        String sql="delete from paciente where dni=?";
+        
+        try {
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1, dni);
+           int exito= ps.executeUpdate();
+           
+           if(exito==1 ){
+               JOptionPane.showMessageDialog(null, "paciente eliminado con exito");
+           }
+            
+            
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla paciente");
+        }
         
     }
     
