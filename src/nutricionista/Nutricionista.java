@@ -6,8 +6,10 @@
 package nutricionista;
 
 import java.sql.Connection;
+import nutricionista.accesodatos.ComidaData;
 import nutricionista.accesodatos.Conexion;
 import nutricionista.accesodatos.PacienteData;
+import nutricionista.entidades.Comida;
 import nutricionista.entidades.Paciente;
 
 /**
@@ -31,7 +33,16 @@ public class Nutricionista {
         
         //pac.guardarPaciente(uno);
         //pac.modificarPaciente(uno);
-        pac.eliminarPaciente(34332910);
+        //pac.eliminarPaciente(34332910);
+    
+    Comida alm=new Comida (1,"almuerzo","bife,ensalada",300);
+    
+    ComidaData com=new ComidaData();
+    
+    //com.guardarComida(alm);
+    //com.modificarComida(alm);
+    com.eliminarComida(alm.getNombre());
+    
     }
     
 }

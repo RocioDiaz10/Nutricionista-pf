@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -97,5 +99,37 @@ public class PacienteData {
         
     }
     
+    public List <Paciente> ListaPacientes(){
+         
+         Paciente paciente= null;
+         String sql = "SELECT id_paciente, nombre, apellido, dni, domicilio, celular FROM paciente ";
+         PreparedStatement ps= null;
+         
+         List <Paciente> pacientes = new ArrayList<>();
+                 
+        try{
+            ps = con.prepareStatement(sql);
+            ResultSet rs= ps.executeQuery();
+         
+         while(rs.next()){
+                paciente.setId_paciente(rs.getInt("id_paciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setCelular(rs.getInt("celular"));
+                
+                pacientes.add(paciente);
+            }   
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla paciente");
+        }
+
+        
+         
+        return pacientes;
+         
+    }
     
 }
