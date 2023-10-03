@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package nutricionista;
 
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.Month;
 import nutricionista.accesodatos.ComidaData;
 import nutricionista.accesodatos.Conexion;
+import nutricionista.accesodatos.DietaComidaData;
+import nutricionista.accesodatos.DietaData;
 import nutricionista.accesodatos.PacienteData;
 import nutricionista.entidades.Comida;
+import nutricionista.entidades.Dieta;
+import nutricionista.entidades.DietaComida;
 import nutricionista.entidades.Paciente;
 
 /**
@@ -27,7 +29,7 @@ public class Nutricionista {
         
         con = Conexion.getConexion();
         
-        Paciente uno= new Paciente(2,"JAVIER","gonzalez",34332910,"SAN MARTIN 12",234563242);
+        Paciente uno= new Paciente(3,"JAVIER","gonzalez",34332910,"SAN MARTIN 12",234563242);
         
         PacienteData pac= new PacienteData();
         
@@ -41,7 +43,23 @@ public class Nutricionista {
     
     //com.guardarComida(alm);
     //com.modificarComida(alm);
-    com.eliminarComida(alm.getNombre());
+    //com.eliminarComida(alm.getNombre());
+    
+    Dieta dieta=new Dieta(1,"alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
+    
+    DietaData die=new DietaData();
+    
+    //die.guardarDieta(dieta);
+   // die.modificarDieta(dieta);
+    //die.eliminarDieta(dieta);
+   
+    DietaComida dc=new DietaComida(alm,dieta);
+    
+    DietaComidaData dcd= new DietaComidaData();
+    
+    dcd.GuardarDietaComida(dc);
+    
+    
     
     }
     

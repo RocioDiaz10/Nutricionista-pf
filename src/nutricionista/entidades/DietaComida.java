@@ -20,6 +20,30 @@ public class DietaComida {
         this.comida = comida;
         this.dieta = dieta;
     }
+
+    public int getId_dietacomida() {
+        return id_dietacomida;
+    }
+
+    public void setId_dietacomida(int id_dietacomida) {
+        this.id_dietacomida = id_dietacomida;
+    }
+
+    public Comida getComida() {
+        return comida;
+    }
+
+    public void setComida(Comida comida) {
+        this.comida = comida;
+    }
+
+    public Dieta getDieta() {
+        return dieta;
+    }
+
+    public void setDieta(Dieta dieta) {
+        this.dieta = dieta;
+    }
     
     
     

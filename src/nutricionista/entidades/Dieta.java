@@ -9,7 +9,6 @@ public class Dieta {
     private int id_dieta;
     private String nombre;
     private Paciente paciente;
-    private Comida comida;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private double pesoInicio;
@@ -18,21 +17,19 @@ public class Dieta {
     public Dieta() {
     }
 
-    public Dieta(int id_dieta, String nombre, Paciente paciente, Comida comida, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
+    public Dieta(int id_dieta, String nombre, Paciente paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
         this.id_dieta = id_dieta;
         this.nombre = nombre;
         this.paciente = paciente;
-        this.comida = comida;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.pesoInicio = pesoInicio;
         this.pesoFinal = pesoFinal;
     }
 
-    public Dieta(String nombre, Paciente paciente, Comida comida, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
+    public Dieta(String nombre, Paciente paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
         this.nombre = nombre;
         this.paciente = paciente;
-        this.comida = comida;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.pesoInicio = pesoInicio;
@@ -63,13 +60,6 @@ public class Dieta {
         this.paciente = paciente;
     }
 
-    public Comida getComida() {
-        return comida;
-    }
-
-    public void setComida(Comida comida) {
-        this.comida = comida;
-    }
 
     public LocalDate getFechaInicio() {
         return fechaInicio;

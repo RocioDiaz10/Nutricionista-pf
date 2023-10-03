@@ -98,13 +98,7 @@ public class ComidaData {
         }
         
     }
-     
-     
-     
-     
-     
-     
-     
+
      
      public List <Comida> ListarComidas(){
          
