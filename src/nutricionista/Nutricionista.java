@@ -29,7 +29,7 @@ public class Nutricionista {
         
         con = Conexion.getConexion();
         
-        Paciente uno= new Paciente(3,"JAVIER","gonzalez",34332910,"SAN MARTIN 12",234563242);
+        Paciente uno= new Paciente(5,"Male","Fernandez",789456,"SAN juan 123",261456987);
         
         PacienteData pac= new PacienteData();
         
@@ -37,7 +37,8 @@ public class Nutricionista {
         //pac.modificarPaciente(uno);
         //pac.eliminarPaciente(34332910);
     
-    Comida alm=new Comida (1,"almuerzo","bife,ensalada",300);
+    Comida alm=new Comida (3,"cena","omelette",150);
+    //Comida alm=new Comida ("cena","omelette",150);
     
     ComidaData com=new ComidaData();
     
@@ -46,10 +47,10 @@ public class Nutricionista {
     //com.eliminarComida(alm.getNombre());
     
     Dieta dieta=new Dieta(1,"alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
-    
+   // Dieta dieta=new Dieta("alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
     DietaData die=new DietaData();
     
-    //die.guardarDieta(dieta);
+    die.guardarDieta(dieta);
    // die.modificarDieta(dieta);
     //die.eliminarDieta(dieta);
    
@@ -57,10 +58,13 @@ public class Nutricionista {
     
     DietaComidaData dcd= new DietaComidaData();
     
-    dcd.GuardarDietaComida(dc);
+    //dcd.GuardarDietaComida(dc);
+   
     
     
     
     }
     
 }
+
+

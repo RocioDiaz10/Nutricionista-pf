@@ -45,7 +45,7 @@ public class DietaComidaData {
             
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla dietacomida");
+            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla dietacomida123");
         }
         
         
