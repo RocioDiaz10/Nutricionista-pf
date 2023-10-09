@@ -7,6 +7,7 @@ package nutricionista.vistas;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import nutricionista.accesodatos.PacienteData;
 import nutricionista.entidades.Paciente;
@@ -41,8 +42,8 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         jBEliminar = new javax.swing.JButton();
         jBLimpiar = new javax.swing.JButton();
         jTDni = new javax.swing.JTextField();
-        jTNombre = new javax.swing.JTextField();
         jTApellido = new javax.swing.JTextField();
+        jTNombre = new javax.swing.JTextField();
         jTDomicilio = new javax.swing.JTextField();
         jTCelular = new javax.swing.JTextField();
         jBBuscar = new javax.swing.JButton();
@@ -70,12 +71,27 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         });
 
         jBModificar.setText("Modificar");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBLimpiar.setText("Limpiar");
 
         jBBuscar.setText("Buscar");
+        jBBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -99,8 +115,8 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addGap(79, 79, 79)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTNombre)
                                 .addComponent(jTApellido)
+                                .addComponent(jTNombre)
                                 .addComponent(jTDomicilio)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -143,9 +159,9 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
                         .addGap(29, 29, 29)
                         .addComponent(jLApellido))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,6 +209,83 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jBNuevoActionPerformed
 
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        // TODO add your handling code here:
+        
+        if(pacienteActual!=null){
+            
+            pacienteData.eliminarPaciente(pacienteActual.getDni());
+            pacienteActual=null;
+            limpiarCampos();
+            
+        }else
+            JOptionPane.showMessageDialog(this, "no existe alumno");
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+        
+       try{
+        int dni= Integer.parseInt(jTDni.getText());
+         String nombre= jTNombre.getText();
+         String apellido= jTApellido.getText();
+         String domicilio=jTDomicilio.getText();
+         int celular=Integer.parseInt(jTCelular.getText());
+         
+         if(apellido.isEmpty() || nombre.isEmpty() || domicilio.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Campo Vacio. Completar todos los datos");
+            return;
+        }
+         
+       pacienteActual.setDni(dni);
+       pacienteActual.setNombre(nombre);
+       pacienteActual.setApellido(apellido);
+       pacienteActual.setDomicilio(domicilio);
+       pacienteActual.setCelular(celular);
+       
+        
+       pacienteData.modificarPaciente(pacienteActual);
+     }catch(NumberFormatException nf){
+        JOptionPane.showMessageDialog(this, "ERROR. Debe ingresar el numero de DNI");
+    }  
+        
+           
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBBuscarActionPerformed
+   
+        try{
+        int dni= Integer.parseInt(jTDni.getText());
+      
+        Paciente paciente= pacienteData.buscarPacienteDNI(dni);
+        pacienteActual=pacienteData.buscarPacienteDNI(dni);
+       
+        if(pacienteActual!=null){
+       
+        jTNombre.setText(pacienteActual.getNombre());
+        jTApellido.setText(pacienteActual.getApellido());
+        jTDomicilio.setText(pacienteActual.getDomicilio());
+        
+        jTCelular.setText(String.valueOf(pacienteActual.getCelular()));
+      
+        }
+        }catch (NumberFormatException ex){
+          JOptionPane.showMessageDialog(this,"debe ingresar un numero valido");
+      }
+        
+     
+    }//GEN-LAST:event_jBBuscarActionPerformed
+
+    
+    
+private void limpiarCampos(){
+        
+        jTDni.setText("");
+        jTNombre.setText("");
+        jTApellido.setText("");
+        jTDomicilio.setText("");
+        jTCelular.setText("");
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBBuscar;

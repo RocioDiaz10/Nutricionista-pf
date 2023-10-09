@@ -98,6 +98,38 @@ public class PacienteData {
         }
         
     }
+    public Paciente buscarPacienteDNI(int dni){
+        
+        Paciente paciente= null;
+        String sql = "SELECT id_paciente, dni, apellido, nombre, domicilio, celular from paciente where dni= ?  ";
+        PreparedStatement ps= null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs= ps.executeQuery();
+            
+            if(rs.next()){
+                paciente= new Paciente();
+                
+                
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setCelular(rs.getInt("celular"));
+                
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe el paciente");
+            }    
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro un paciente con ese DNI");
+        }
+        
+        return paciente;
+}
     
     public List <Paciente> ListaPacientes(){
          
