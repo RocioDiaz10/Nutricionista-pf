@@ -85,6 +85,11 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         });
 
         jBLimpiar.setText("Limpiar");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
 
         jBBuscar.setText("Buscar");
         jBBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -219,7 +224,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
             limpiarCampos();
             
         }else
-            JOptionPane.showMessageDialog(this, "no existe alumno");
+            JOptionPane.showMessageDialog(this, "no existe el paciente");
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
@@ -274,6 +279,13 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
         
      
     }//GEN-LAST:event_jBBuscarActionPerformed
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+   
+        limpiarCampos();
+        pacienteActual=null;
+        
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
     
     
