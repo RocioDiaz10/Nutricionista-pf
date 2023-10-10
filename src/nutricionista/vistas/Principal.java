@@ -32,6 +32,7 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMFormularioComida = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMPaciente = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -56,19 +57,28 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 619, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 383, Short.MAX_VALUE)
+            .addGap(0, 477, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Comidas");
+
+        jMFormularioComida.setText("Formulario Comida");
+        jMFormularioComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMFormularioComidaActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMFormularioComida);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Paciente");
 
-        jMPaciente.setText("FormularioPaciente");
+        jMPaciente.setText("Formulario Paciente");
         jMPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMPacienteActionPerformed(evt);
@@ -97,9 +107,7 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
@@ -113,6 +121,15 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.add(fp);
         jDesktopPane1.moveToFront(fp);
     }//GEN-LAST:event_jMPacienteActionPerformed
+
+    private void jMFormularioComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFormularioComidaActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        FormularioComida fc= new FormularioComida();
+        fc.setVisible(true);
+        jDesktopPane1.add(fc);
+        jDesktopPane1.moveToFront(fc);
+    }//GEN-LAST:event_jMFormularioComidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,6 +168,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jMFormularioComida;
     private javax.swing.JMenuItem jMPaciente;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

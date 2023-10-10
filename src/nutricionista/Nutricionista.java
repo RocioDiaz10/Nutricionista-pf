@@ -50,7 +50,7 @@ public class Nutricionista {
    // Dieta dieta=new Dieta("alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
     DietaData die=new DietaData();
     
-    die.guardarDieta(dieta);
+    //die.guardarDieta(dieta);
    // die.modificarDieta(dieta);
     //die.eliminarDieta(dieta);
    
@@ -58,7 +58,7 @@ public class Nutricionista {
     
     DietaComidaData dcd= new DietaComidaData();
     
-    //dcd.GuardarDietaComida(dc);
+    dcd.GuardarDietaComida(dc);
    
     
     

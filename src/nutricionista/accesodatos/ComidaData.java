@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import nutricionista.entidades.Comida;
 
@@ -49,10 +51,41 @@ public class ComidaData {
     }
     
     
-     public void modificarComida(Comida comida){
-         String sql= "update  comida set nombre =? ,detalle=?, cantCalorias=? "
-                 +"where id_comida=?";
+    public Comida buscarComida(String nombre) {
         
+        Comida comida=null;
+        String sql= "SELECT nombre, detalle, cantCalorias FROM comida WHERE nombre = ? ";
+        
+        PreparedStatement ps= null;
+                
+       
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs= ps.executeQuery();
+            
+            if(rs.next()){
+                comida= new Comida();
+                
+                comida.setNombre(rs.getString("nombre"));
+                comida.setDetalle(rs.getString("detalle"));
+                comida.setCantCalorias(rs.getInt("cantCalorias"));
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe la comida");
+            }    
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro la comida con ese Nombre");
+        }
+            
+        return comida;
+    }
+    
+    
+    
+     public void modificarComida(Comida comida){
+         String sql= "UPDATE comida SET nombre = ? , detalle = ? , cantCalorias = ? WHERE id_comida = ?";
+         System.out.println("0");
         try {
             PreparedStatement ps= con.prepareStatement(sql);
             
@@ -63,13 +96,15 @@ public class ComidaData {
             
             int exito= ps.executeUpdate();
             
+            System.out.println("1");
             
             if(exito==1){
                 
-                JOptionPane.showMessageDialog(null, "comida modificada");
+                JOptionPane.showMessageDialog(null, "Comida Modificada");
             }
            
-              
+            System.out.println("2");   
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null,"No se puede ingresar a la tabla comida");
         }
