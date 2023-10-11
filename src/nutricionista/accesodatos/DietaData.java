@@ -44,12 +44,12 @@ public class DietaData {
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 dieta.setId_dieta(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "dieta Guardada");
+                JOptionPane.showMessageDialog(null, "Dieta Guardada");
             }
              ps.close();
              
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"no se puede ingresar a la tabla dieta");
+            JOptionPane.showMessageDialog(null,"No se puede ingresar a la tabla DIETA");
         }
         
         
@@ -77,7 +77,7 @@ public class DietaData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla dieta");
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar a la tabla DIETA");
         }
 
     }
@@ -93,13 +93,13 @@ public class DietaData {
            int exito= ps.executeUpdate();
            
            if(exito==1 ){
-               JOptionPane.showMessageDialog(null, "dieta eliminada con exito");
+               JOptionPane.showMessageDialog(null, "Dieta eliminada con Exito");
            }
             
             
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla dieta");
+           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla DIETA");
         }
         
     }

@@ -84,34 +84,29 @@ public class ComidaData {
     
     
      public void modificarComida(Comida comida){
-         String sql= "UPDATE comida SET nombre = ? , detalle = ? , cantCalorias = ? WHERE id_comida = ?";
-         System.out.println("0");
+  
+         String sql = "UPDATE comida SET nombre = ?, detalle = ?, cantCalorias = ? WHERE id_comida = ?";
+
         try {
-            PreparedStatement ps= con.prepareStatement(sql);
+            PreparedStatement ps=con.prepareStatement(sql);
             
             ps.setString(1, comida.getNombre());
             ps.setString(2, comida.getDetalle());
-            ps.setInt(3,comida.getCantCalorias());
+            ps.setInt(3, comida.getCantCalorias());
             ps.setInt(4, comida.getId_comida());
             
-            int exito= ps.executeUpdate();
-            
-            System.out.println("1");
-            
-            if(exito==1){
-                
-                JOptionPane.showMessageDialog(null, "Comida Modificada");
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Modificacion realizada");
             }
-           
-            System.out.println("2");   
-            
+
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null,"No se puede ingresar a la tabla comida");
+            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla COMIDA");
         }
-    
-    
-    
+
     }
+     
+   
      
      public void eliminarComida(String nombre){
         
@@ -129,7 +124,7 @@ public class ComidaData {
             
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla comida");
+           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla COMIDA");
         }
         
     }

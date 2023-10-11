@@ -213,29 +213,27 @@ public class FormularioComida extends javax.swing.JInternalFrame {
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
 
-     try{   
-        String nombre= jTNombre.getText();
-        String detalle= jTDetalle.getText();
-        int calorias= Integer.parseInt(jTCalorias.getText());
-        
-         if(detalle.isEmpty() || nombre.isEmpty() ){
+     try{
+         String nombre= jTNombre.getText();
+         String detalle= jTDetalle.getText();
+         int calorias = Integer.parseInt(jTCalorias.getText());
+         
+         if(detalle.isEmpty() || nombre.isEmpty()){
             JOptionPane.showMessageDialog(this, "Campo Vacio. Completar todos los datos");
             return;
         }
+       
+       
+       comidaActual.setNombre(nombre);
+       comidaActual.setDetalle(detalle);
+       comidaActual.setCantCalorias(calorias);
+       
         
-        comidaActual.setNombre(nombre);
-        comidaActual.setDetalle(detalle);
-        comidaActual.setCantCalorias(calorias);
-        
-         System.out.println("Llega hasta aca");
-         
-        comdata.modificarComida(comidaActual);
-         
-        System.out.println("Parece q sale bien del metodo");
-         
-        }catch (NumberFormatException ex){
-          JOptionPane.showMessageDialog(this,"Debe ingresar un nombre de comida valido");
-      }
+       comdata.modificarComida(comidaActual);
+       
+     }catch(NumberFormatException nf){
+        JOptionPane.showMessageDialog(this, "ERROR. Debe ingresar el nombre de una Comida");
+    }  
         
     }//GEN-LAST:event_jBModificarActionPerformed
 
@@ -273,7 +271,7 @@ public class FormularioComida extends javax.swing.JInternalFrame {
         }
         
         }catch (NumberFormatException ex){
-          JOptionPane.showMessageDialog(this,"Debe ingresar un nombre de comida valido");
+          JOptionPane.showMessageDialog(this,"Debe ingresar un nombre de Comida Valido");
       }
         
     }//GEN-LAST:event_jBuscarActionPerformed

@@ -38,14 +38,14 @@ public class PacienteData {
             ResultSet rs= ps.getGeneratedKeys();
             if(rs.next()){
                 paciente.setId_paciente(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "paciente Guardado");
+                JOptionPane.showMessageDialog(null, "Paciente Guardado");
                 }
             ps.close();
          
          
          
      } catch (SQLException ex) {
-         JOptionPane.showMessageDialog(null,"no se pudo ingresar a la tabla paciente");
+         JOptionPane.showMessageDialog(null,"no se pudo ingresar a la tabla PACIENTE");
      }
         
         
@@ -73,14 +73,14 @@ public class PacienteData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla paciente");
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar a la tabla PACIENTE");
         }
 
     }
     
     public void eliminarPaciente(int dni){
         
-        String sql="delete from paciente where dni=?";
+        String sql="DELETE from paciente WHERE dni=?";
         
         try {
             PreparedStatement ps=con.prepareStatement(sql);
@@ -88,13 +88,13 @@ public class PacienteData {
            int exito= ps.executeUpdate();
            
            if(exito==1 ){
-               JOptionPane.showMessageDialog(null, "paciente eliminado con exito");
+               JOptionPane.showMessageDialog(null, "Paciente eliminado con exito");
            }
             
             
             
         } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla paciente");
+           JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla PACIENTE");
         }
         
     }

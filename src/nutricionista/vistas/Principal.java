@@ -36,6 +36,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMPaciente = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        jMFormularioDieta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
 
@@ -89,6 +90,15 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Dieta");
+
+        jMFormularioDieta.setText("Formulario Dieta");
+        jMFormularioDieta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMFormularioDietaActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMFormularioDieta);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Consulta");
@@ -131,6 +141,15 @@ public class Principal extends javax.swing.JFrame {
         jDesktopPane1.moveToFront(fc);
     }//GEN-LAST:event_jMFormularioComidaActionPerformed
 
+    private void jMFormularioDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFormularioDietaActionPerformed
+       jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        FormularioDieta fd= new FormularioDieta();
+         jDesktopPane1.add(fd);
+        jDesktopPane1.moveToFront(fd);
+        
+    }//GEN-LAST:event_jMFormularioDietaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -169,6 +188,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuItem jMFormularioComida;
+    private javax.swing.JMenuItem jMFormularioDieta;
     private javax.swing.JMenuItem jMPaciente;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
