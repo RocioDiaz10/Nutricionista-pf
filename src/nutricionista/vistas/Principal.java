@@ -142,12 +142,13 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMFormularioComidaActionPerformed
 
     private void jMFormularioDietaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMFormularioDietaActionPerformed
-       jDesktopPane1.removeAll();
-        jDesktopPane1.repaint();
-        FormularioDieta fd= new FormularioDieta();
-         jDesktopPane1.add(fd);
-        jDesktopPane1.moveToFront(fd);
-        
+     jDesktopPane1.removeAll();
+     jDesktopPane1.repaint();    
+     FormularioDieta fd= new FormularioDieta();
+     fd.setVisible(true);
+     jDesktopPane1.add(fd);
+     jDesktopPane1.moveToFront(fd);
+     
     }//GEN-LAST:event_jMFormularioDietaActionPerformed
 
     /**

@@ -46,7 +46,7 @@ public class Nutricionista {
     //com.modificarComida(alm);
     //com.eliminarComida(alm.getNombre());
     
-    Dieta dieta=new Dieta(1,"alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
+   // Dieta dieta=new Dieta(1,"alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
    // Dieta dieta=new Dieta("alta caloria", uno, LocalDate.of(2023, Month.OCTOBER, 02), LocalDate.of(2023, Month.OCTOBER, 31),80.55, 70.00);
     DietaData die=new DietaData();
     
@@ -54,11 +54,11 @@ public class Nutricionista {
    // die.modificarDieta(dieta);
     //die.eliminarDieta(dieta);
    
-    DietaComida dc=new DietaComida(alm,dieta);
+    //DietaComida dc=new DietaComida(alm,dieta);
     
     DietaComidaData dcd= new DietaComidaData();
     
-    dcd.GuardarDietaComida(dc);
+   // dcd.GuardarDietaComida(dc);
    
     
     

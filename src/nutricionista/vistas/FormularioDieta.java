@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package nutricionista.vistas;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import nutricionista.accesodatos.DietaData;
 import nutricionista.entidades.Dieta;
+import nutricionista.entidades.Paciente;
 
 /**
  *
@@ -16,6 +20,7 @@ import nutricionista.entidades.Dieta;
 public class FormularioDieta extends javax.swing.JInternalFrame {
     private Dieta dietaactual = null;
     private DietaData dietadata= new DietaData();
+    
     /**
      * Creates new form FormularioDIeta
      */
@@ -56,11 +61,11 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Forulario Dieta");
+        setTitle("Formulario Dieta");
 
         jLabel1.setText("Nombre");
 
-        jLabel2.setText("Paciente");
+        jLabel2.setText("DNI del Paciente");
 
         jLabel3.setText("Fecha Inicio");
 
@@ -74,12 +79,32 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         jLabel7.setText("DIETA");
 
         jBNuevo.setText("Nuevo");
+        jBNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBNuevoActionPerformed(evt);
+            }
+        });
 
         jBModificar.setText("Modificar");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
 
         jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBLimpiar.setText("Limpiar");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -185,13 +210,98 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
+        
+        String nombre= jTDietaNombre.getText();
+        int dni= Integer.parseInt(jTPaciente.getText());
+        
+        java.util.Date fi=jDFechaInicio.getDate();
+        LocalDate fechaIni=fi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        java.util.Date ff=jDFechaFinal.getDate();
+        LocalDate fechaFin=ff.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+       
+        
+       
+        double pi= Double.parseDouble(jTPesoInicial.getText());
+        double pf= Double.parseDouble(jTPesoFinal.getText());
+        
+         if(nombre.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Campo Vacio. Completar todos los datos");
+            return;
+        }
+          if(dietaactual==null){
+            dietaactual=new Dieta(nombre,dni,fechaIni,fechaFin,pi,pf);
+            dietadata.guardarDieta(dietaactual);    
+        }
+  
+        
+    }//GEN-LAST:event_jBNuevoActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+       
+         if(dietaactual!=null){
+            
+            dietadata.eliminarDieta(dietaactual.getId_dieta());
+            dietaactual=null;
+            limpiarCampos();
+            
+        }else
+            JOptionPane.showMessageDialog(this, "No existe esta Dieta");
     
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+      
+    try{    
+        String nombre= jTDietaNombre.getText();
+        int dni= Integer.parseInt(jTPaciente.getText());
+        
+        java.util.Date fi=jDFechaInicio.getDate();
+        LocalDate fechaIni=fi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        java.util.Date ff=jDFechaFinal.getDate();
+        LocalDate fechaFin=ff.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        
+        double pi= Double.parseDouble(jTPesoInicial.getText());
+        double pf= Double.parseDouble(jTPesoFinal.getText());
+        
+         if(nombre.isEmpty() ){
+            JOptionPane.showMessageDialog(this, "Campo Vacio. Completar todos los datos");
+            return;
+        }
+         
+        dietaactual.setNombre(nombre);
+        dietaactual.setDnipaciente(dni);
+        dietaactual.setFechaInicio(fechaIni);
+        dietaactual.setFechaFin(fechaFin);
+        dietaactual.setPesoInicio(pi);
+        dietaactual.setPesoFinal(pf);
     
+       dietadata.modificarDieta(dietaactual);
+       
+      }catch(NumberFormatException nf){
+        JOptionPane.showMessageDialog(this, "ERROR. Debe ingresar el numero de DNI del paciente");
+      }
+
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiarCampos();
+    }//GEN-LAST:event_jBLimpiarActionPerformed
+
     
     
    private void limpiarCampos(){
         
-        
+        jTDietaNombre.setText("");
+        jTPaciente.setText("");
+        jDFechaInicio.setToolTipText("");
+        jDFechaFinal.setToolTipText("");
+        jTPesoFinal.setText("");
+        jTPesoInicial.setText("");
         
     }
 

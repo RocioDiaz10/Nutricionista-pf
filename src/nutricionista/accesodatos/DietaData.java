@@ -26,13 +26,13 @@ public class DietaData {
     }
     
     public void guardarDieta(Dieta dieta){
-        String sql="insert into dieta (nombre, id_paciente,fechaInicio,fechaFin,pesoInicio,pesoFinal)"
+        String sql="insert into dieta (nombre, dni_paciente,fechaInicio,fechaFinal,pesoInicio,pesoFinal)"
                 +" Values (?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps= con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1,dieta.getNombre());
-            ps.setInt(2, dieta.getPaciente().getId_paciente());
+            ps.setInt(2, dieta.getDnipaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicio()));
             ps.setDate(4, Date.valueOf(dieta.getFechaFin()));
             ps.setDouble(5, dieta.getPesoInicio());
@@ -58,13 +58,13 @@ public class DietaData {
     
     public void modificarDieta(Dieta dieta) {
 
-        String sql = "UPDATE dieta SET nombre=? , id_paciente=? ,fechaInicio=?,fechaFin=?,pesoInicio=?,pesoFinal=? "
+        String sql = "UPDATE dieta SET nombre=? , dni_paciente=? ,fechaInicio=?,fechaFinal=?,pesoInicio=?,pesoFinal=? "
                 + "WHERE id_dieta = ?";
 
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, dieta.getNombre());
-            ps.setInt(2, dieta.getPaciente().getId_paciente());
+            ps.setInt(2, dieta.getDnipaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicio()));
             ps.setDate(4, Date.valueOf(dieta.getFechaFin()));
             ps.setDouble(5, dieta.getPesoInicio());
@@ -82,14 +82,14 @@ public class DietaData {
 
     }
     
-    public void eliminarDieta(Dieta dieta){
+    public void eliminarDieta(int id_dieta){
         
         String sql="delete from dieta where id_dieta=?";
         
         
         try {
             PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1, dieta.getId_dieta());
+            ps.setInt(1, id_dieta);
            int exito= ps.executeUpdate();
            
            if(exito==1 ){
