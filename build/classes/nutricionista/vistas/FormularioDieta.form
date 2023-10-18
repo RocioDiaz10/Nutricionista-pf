@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
-  <NonVisualComponents>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooser1">
-    </Component>
-  </NonVisualComponents>
   <Properties>
     <Property name="closable" type="boolean" value="true"/>
     <Property name="iconifiable" type="boolean" value="true"/>
@@ -69,12 +65,17 @@
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel7" min="-2" pref="70" max="-2" attributes="0"/>
+<<<<<<< HEAD
                               <Component id="jTDietaNombre" max="32767" attributes="0"/>
+=======
+                              <Component id="jTDietaNombre" pref="145" max="32767" attributes="0"/>
                               <Component id="jTPaciente" alignment="0" max="32767" attributes="0"/>
+>>>>>>> 1bd70a888b41e4c32766a4b3ea01e8c2e29a749d
                               <Component id="jTPesoInicial" max="32767" attributes="0"/>
                               <Component id="jTPesoFinal" max="32767" attributes="0"/>
-                              <Component id="jDFechaInicio" alignment="0" pref="145" max="32767" attributes="0"/>
+                              <Component id="jDFechaInicio" alignment="0" max="32767" attributes="0"/>
                               <Component id="jDFechaFinal" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jCPacientes" alignment="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -95,19 +96,19 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCPacientes" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <Component id="jDFechaInicio" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <Component id="jDFechaFinal" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jTPesoInicial" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -124,7 +125,7 @@
                       <Component id="jBEliminar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBLimpiar" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace pref="31" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,7 +138,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DNI del Paciente"/>
+            <Property name="text" type="java.lang.String" value="Paciente"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -169,8 +170,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DIETA"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTPaciente">
         </Component>
         <Component class="javax.swing.JTextField" name="jTPesoInicial">
         </Component>
@@ -211,6 +210,19 @@
         <Component class="com.toedter.calendar.JDateChooser" name="jDFechaInicio">
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDFechaFinal">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jCPacientes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="jCPacientesItemStateChanged"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

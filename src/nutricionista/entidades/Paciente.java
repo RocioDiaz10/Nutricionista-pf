@@ -80,7 +80,7 @@ public class Paciente {
 
     @Override
     public String toString() {
-        return "Paciente{" + "id_paciente=" + id_paciente + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + ", domicilio=" + domicilio + ", celular=" + celular + '}';
+        return nombre + " " + apellido ;
     }
     
     

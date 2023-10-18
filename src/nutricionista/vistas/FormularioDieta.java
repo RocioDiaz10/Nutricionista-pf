@@ -4,12 +4,16 @@
  * and open the template in the editor.
  */
 package nutricionista.vistas;
+import java.awt.event.ItemEvent;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 import nutricionista.accesodatos.DietaData;
+import nutricionista.accesodatos.PacienteData;
 import nutricionista.entidades.Dieta;
 import nutricionista.entidades.Paciente;
 
@@ -18,14 +22,27 @@ import nutricionista.entidades.Paciente;
  * @author Jorge Santiago
  */
 public class FormularioDieta extends javax.swing.JInternalFrame {
-    private Dieta dietaactual = null;
-    private DietaData dietadata= new DietaData();
+    private Dieta dietaactual;
+    private Paciente paciente;
+    
+    private DietaData dietadata;
+    private PacienteData pacientedata;
+    
+    private List <Paciente> pacientes;
     
     /**
      * Creates new form FormularioDIeta
      */
     public FormularioDieta() {
         initComponents();
+        
+        PacienteData pacientedata= new PacienteData();
+        Paciente paciente= new Paciente();
+        DietaData dietadata= new DietaData();
+        Dieta dietaactual = new Dieta();
+        pacientes=(ArrayList<Paciente>)pacientedata.ListaPacientes();
+        
+        cargaPacientes();
     }
 
     /**
@@ -37,7 +54,6 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,7 +63,6 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jTDietaNombre = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jTPaciente = new javax.swing.JTextField();
         jTPesoInicial = new javax.swing.JTextField();
         jTPesoFinal = new javax.swing.JTextField();
         jBNuevo = new javax.swing.JButton();
@@ -56,6 +71,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         jBLimpiar = new javax.swing.JButton();
         jDFechaInicio = new com.toedter.calendar.JDateChooser();
         jDFechaFinal = new com.toedter.calendar.JDateChooser();
+        jCPacientes = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -65,7 +81,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Nombre");
 
-        jLabel2.setText("DNI del Paciente");
+        jLabel2.setText("Paciente");
 
         jLabel3.setText("Fecha Inicio");
 
@@ -106,6 +122,12 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        jCPacientes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCPacientesItemStateChanged(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -114,7 +136,6 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jLabel6, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTDietaNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTPaciente, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTPesoInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jTPesoFinal, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jBNuevo, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -123,6 +144,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jBLimpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jDFechaInicio, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jDFechaFinal, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jCPacientes, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -150,12 +172,21 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                             .addComponent(jTDietaNombre)
-                            .addComponent(jTPaciente)
                             .addComponent(jTPesoInicial)
                             .addComponent(jTPesoFinal)
                             .addComponent(jDFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jDFechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCPacientes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+=======
+                            .addComponent(jTDietaNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(jTPaciente)
+                            .addComponent(jTPesoInicial)
+                            .addComponent(jTPesoFinal)
+                            .addComponent(jDFechaInicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jDFechaFinal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+>>>>>>> 1bd70a888b41e4c32766a4b3ea01e8c2e29a749d
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -170,16 +201,16 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCPacientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(jDFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(9, 9, 9)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jDFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTPesoInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -193,7 +224,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
                     .addComponent(jBModificar)
                     .addComponent(jBEliminar)
                     .addComponent(jBLimpiar))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -213,17 +244,14 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
     private void jBNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBNuevoActionPerformed
         
         String nombre= jTDietaNombre.getText();
-        int dni= Integer.parseInt(jTPaciente.getText());
+        Paciente p= (Paciente)jCPacientes.getSelectedItem(); // aca se selecciona al paciente y se guarda dsp con p.getId_Paciente() en dietaactual
         
         java.util.Date fi=jDFechaInicio.getDate();
         LocalDate fechaIni=fi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         
         java.util.Date ff=jDFechaFinal.getDate();
         LocalDate fechaFin=ff.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        
-       
-        
-       
+  
         double pi= Double.parseDouble(jTPesoInicial.getText());
         double pf= Double.parseDouble(jTPesoFinal.getText());
         
@@ -232,7 +260,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
             return;
         }
           if(dietaactual==null){
-            dietaactual=new Dieta(nombre,dni,fechaIni,fechaFin,pi,pf);
+            dietaactual=new Dieta(nombre,p.getId_paciente(),fechaIni,fechaFin,pi,pf);
             dietadata.guardarDieta(dietaactual);    
         }
   
@@ -256,7 +284,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
       
     try{    
         String nombre= jTDietaNombre.getText();
-        int dni= Integer.parseInt(jTPaciente.getText());
+        Paciente p= (Paciente)jCPacientes.getSelectedItem(); // aca se selecciona al paciente y se setea dsp con p.getId_Paciente() en dietaactual.set
         
         java.util.Date fi=jDFechaInicio.getDate();
         LocalDate fechaIni=fi.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -273,7 +301,7 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         }
          
         dietaactual.setNombre(nombre);
-        dietaactual.setDnipaciente(dni);
+        dietaactual.setIdpaciente(p.getId_paciente());
         dietaactual.setFechaInicio(fechaIni);
         dietaactual.setFechaFin(fechaFin);
         dietaactual.setPesoInicio(pi);
@@ -292,12 +320,30 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
+    private void jCPacientesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCPacientesItemStateChanged
+        
+        if(evt.getStateChange()== ItemEvent.SELECTED){
+            
+            Paciente seleccionado= (Paciente) jCPacientes.getSelectedItem();
+                    
+            List<Paciente> pacientes= (ArrayList) pacientedata.ListaPacientes();
+            
+            seleccionado.getId_paciente();
+         
+        }  
+    }//GEN-LAST:event_jCPacientesItemStateChanged
+
+   private void cargaPacientes(){ //carga el combobox
     
+        for(Paciente sel : pacientes){
+            jCPacientes.addItem(sel);  // no se que pasa q no me deja poner ahi el nombre de la variable. Me dice q Paciente no se púede pasar a String
+            }
+}
     
    private void limpiarCampos(){
         
         jTDietaNombre.setText("");
-        jTPaciente.setText("");
+        jCPacientes.setToolTipText("");
         jDFechaInicio.setToolTipText("");
         jDFechaFinal.setToolTipText("");
         jTPesoFinal.setText("");
@@ -310,9 +356,9 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBLimpiar;
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jBNuevo;
+    private javax.swing.JComboBox<String> jCPacientes;
     private com.toedter.calendar.JDateChooser jDFechaFinal;
     private com.toedter.calendar.JDateChooser jDFechaInicio;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -322,7 +368,6 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField jTDietaNombre;
-    private javax.swing.JTextField jTPaciente;
     private javax.swing.JTextField jTPesoFinal;
     private javax.swing.JTextField jTPesoInicial;
     // End of variables declaration//GEN-END:variables

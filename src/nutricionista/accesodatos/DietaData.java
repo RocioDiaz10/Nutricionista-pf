@@ -26,13 +26,13 @@ public class DietaData {
     }
     
     public void guardarDieta(Dieta dieta){
-        String sql="insert into dieta (nombre, dni_paciente,fechaInicio,fechaFinal,pesoInicio,pesoFinal)"
+        String sql="insert into dieta (nombre, id_paciente,fechaInicio,fechaFinal,pesoInicio,pesoFinal)"
                 +" Values (?,?,?,?,?,?)";
         
         try {
             PreparedStatement ps= con.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
             ps.setString(1,dieta.getNombre());
-            ps.setInt(2, dieta.getDnipaciente());
+            ps.setInt(2, dieta.getIdpaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicio()));
             ps.setDate(4, Date.valueOf(dieta.getFechaFin()));
             ps.setDouble(5, dieta.getPesoInicio());
@@ -58,13 +58,13 @@ public class DietaData {
     
     public void modificarDieta(Dieta dieta) {
 
-        String sql = "UPDATE dieta SET nombre=? , dni_paciente=? ,fechaInicio=?,fechaFinal=?,pesoInicio=?,pesoFinal=? "
+        String sql = "UPDATE dieta SET nombre=? , id_paciente=? ,fechaInicio=?,fechaFinal=?,pesoInicio=?,pesoFinal=? "
                 + "WHERE id_dieta = ?";
 
         try {
             PreparedStatement ps=con.prepareStatement(sql);
             ps.setString(1, dieta.getNombre());
-            ps.setInt(2, dieta.getDnipaciente());
+            ps.setInt(2, dieta.getIdpaciente());
             ps.setDate(3, Date.valueOf(dieta.getFechaInicio()));
             ps.setDate(4, Date.valueOf(dieta.getFechaFin()));
             ps.setDouble(5, dieta.getPesoInicio());
