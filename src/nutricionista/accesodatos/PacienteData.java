@@ -142,8 +142,10 @@ public class PacienteData {
         try{
             ps = con.prepareStatement(sql);
             ResultSet rs= ps.executeQuery();
-         
+           
          while(rs.next()){
+             
+                paciente= new Paciente();
                 paciente.setId_paciente(rs.getInt("id_paciente"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
@@ -155,7 +157,7 @@ public class PacienteData {
             }   
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla paciente");
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla Paciente");
         }
 
         

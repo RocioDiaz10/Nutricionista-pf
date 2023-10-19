@@ -66,11 +66,11 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jLabel7" min="-2" pref="70" max="-2" attributes="0"/>
                               <Component id="jTDietaNombre" pref="145" max="32767" attributes="0"/>
-                              <Component id="jTPaciente" alignment="0" max="32767" attributes="0"/>
                               <Component id="jTPesoInicial" max="32767" attributes="0"/>
                               <Component id="jTPesoFinal" max="32767" attributes="0"/>
                               <Component id="jDFechaInicio" alignment="0" max="32767" attributes="0"/>
                               <Component id="jDFechaFinal" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jCPacientes" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -89,9 +89,9 @@
                       <Component id="jTDietaNombre" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTPaciente" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                      <Component id="jCPacientes" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -133,7 +133,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="DNI del Paciente"/>
+            <Property name="text" type="java.lang.String" value="Paciente"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -165,8 +165,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="DIETA"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="jTPaciente">
         </Component>
         <Component class="javax.swing.JTextField" name="jTPesoInicial">
         </Component>
@@ -207,6 +205,16 @@
         <Component class="com.toedter.calendar.JDateChooser" name="jDFechaInicio">
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="jDFechaFinal">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jCPacientes">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Paciente&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>

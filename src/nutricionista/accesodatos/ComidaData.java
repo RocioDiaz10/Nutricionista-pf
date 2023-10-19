@@ -54,7 +54,7 @@ public class ComidaData {
     public Comida buscarComida(String nombre) {
         
         Comida comida=null;
-        String sql= "SELECT nombre, detalle, cantCalorias FROM comida WHERE nombre = ? ";
+         String sql= "SELECT id_comida, nombre, detalle, cantCalorias FROM comida WHERE nombre = ? ";
         
         PreparedStatement ps= null;
                 
@@ -66,7 +66,7 @@ public class ComidaData {
             
             if(rs.next()){
                 comida= new Comida();
-                
+                comida.setId_comida(rs.getInt("id_comida"));
                 comida.setNombre(rs.getString("nombre"));
                 comida.setDetalle(rs.getString("detalle"));
                 comida.setCantCalorias(rs.getInt("cantCalorias"));

@@ -9,7 +9,7 @@ public class Dieta {
     private int id_dieta;
     private String nombre;
     private Paciente paciente;
-    private int dnipaciente;
+    private int id_paciente;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private double pesoInicio;
@@ -18,7 +18,7 @@ public class Dieta {
     public Dieta() {
     }
 
-    public Dieta(int id_dieta, String nombre,int dnipaciente, Paciente paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
+    public Dieta(int id_dieta, String nombre,int id_paciente, Paciente paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
         this.id_dieta = id_dieta;
         this.nombre = nombre;
         this.paciente = paciente;
@@ -28,7 +28,7 @@ public class Dieta {
         this.pesoFinal = pesoFinal;
     }
 
-    public Dieta(String nombre,int dnipaciente, Paciente paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
+    public Dieta(String nombre,int id_paciente, Paciente paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
         this.nombre = nombre;
         this.paciente = paciente;
         this.fechaInicio = fechaInicio;
@@ -37,21 +37,21 @@ public class Dieta {
         this.pesoFinal = pesoFinal;
     }
 
-    public Dieta(String nombre, int dnipaciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
+    public Dieta(String nombre, int id_paciente, LocalDate fechaInicio, LocalDate fechaFin, double pesoInicio, double pesoFinal) {
         this.nombre = nombre;
-        this.dnipaciente = dnipaciente;
+        this.id_paciente = id_paciente;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.pesoInicio = pesoInicio;
         this.pesoFinal = pesoFinal;
     }
 
-    public int getDnipaciente() {
-        return dnipaciente;
+    public int getId_paciente() {
+        return id_paciente;
     }
 
-    public void setDnipaciente(int dnipaciente) {
-        this.dnipaciente = dnipaciente;
+    public void setId_paciente(int id_paciente) {
+        this.id_paciente = id_paciente;
     }
 
     public int getId_dieta() {
