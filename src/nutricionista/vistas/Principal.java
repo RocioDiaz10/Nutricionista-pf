@@ -29,6 +29,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -38,6 +39,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMFormularioDieta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        jListaComidas = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
         jMenu5.setText("File");
@@ -52,17 +54,19 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuItem3.setText("jMenuItem3");
 
+        jMenuItem4.setText("jMenuItem4");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 619, Short.MAX_VALUE)
+            .addGap(0, 701, Short.MAX_VALUE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 477, Short.MAX_VALUE)
+            .addGap(0, 579, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Comidas");
@@ -102,6 +106,15 @@ public class Principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Consulta");
+
+        jListaComidas.setText("Lista de Comidas");
+        jListaComidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListaComidasActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jListaComidas);
+
         jMenuBar1.add(jMenu4);
 
         jMenu7.setText("Salir");
@@ -117,7 +130,9 @@ public class Principal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1)
+                .addContainerGap())
         );
 
         pack();
@@ -150,6 +165,15 @@ public class Principal extends javax.swing.JFrame {
      jDesktopPane1.moveToFront(fd);
      
     }//GEN-LAST:event_jMFormularioDietaActionPerformed
+
+    private void jListaComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListaComidasActionPerformed
+     jDesktopPane1.removeAll();
+     jDesktopPane1.repaint(); 
+     ListaComidaDieta lcd= new ListaComidaDieta();
+     lcd.setVisible(true);
+      jDesktopPane1.add(lcd);
+     jDesktopPane1.moveToFront(lcd);
+    }//GEN-LAST:event_jListaComidasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +212,7 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenuItem jListaComidas;
     private javax.swing.JMenuItem jMFormularioComida;
     private javax.swing.JMenuItem jMFormularioDieta;
     private javax.swing.JMenuItem jMPaciente;
@@ -203,5 +228,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

@@ -110,6 +110,11 @@ public class Dieta {
     public void setPesoFinal(double pesoFinal) {
         this.pesoFinal = pesoFinal;
     }
+
+    @Override
+    public String toString() {
+        return  nombre ;
+    }
     
     
     

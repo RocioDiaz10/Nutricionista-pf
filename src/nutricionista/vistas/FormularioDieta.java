@@ -123,6 +123,12 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
             }
         });
 
+        jCPacientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCPacientesActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -317,10 +323,14 @@ public class FormularioDieta extends javax.swing.JInternalFrame {
         limpiarCampos();
     }//GEN-LAST:event_jBLimpiarActionPerformed
 
+    private void jCPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCPacientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCPacientesActionPerformed
+
      private void cargaPacientes(){ //carga el combobox
     
         for(Paciente sel : pacientes){
-            jCPacientes.addItem(sel);  // no se que pasa q no me deja poner ahi el nombre de la variable. Me dice q Paciente no se púede pasar a String
+            jCPacientes.addItem(sel);  
                
         }
 }

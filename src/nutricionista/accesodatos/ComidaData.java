@@ -133,19 +133,20 @@ public class ComidaData {
      public List <Comida> ListarComidas(){
          
        Comida comida= null;
-        String sql = "SELECT id_comida,nombre,detalle,catCalorias FROM comida";
+        String sql = "SELECT id_comida, nombre,detalle,cantCalorias FROM comida";
         PreparedStatement ps= null;
          
          ArrayList <Comida> comidas = new ArrayList<>();
                  
         try{
             ps = con.prepareStatement(sql);
+            
             ResultSet rs= ps.executeQuery();
          
          while(rs.next()){
              comida= new Comida();
              comida.setId_comida(rs.getInt("id_comida"));
-             comida.setNombre(rs.getNString("nombre"));
+             comida.setNombre(rs.getString("nombre"));
              comida.setDetalle(rs.getString("detalle"));
              comida.setCantCalorias(rs.getInt("cantCalorias"));
               

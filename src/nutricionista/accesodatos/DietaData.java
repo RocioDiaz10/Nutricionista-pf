@@ -6,6 +6,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -103,4 +105,41 @@ public class DietaData {
         }
         
     }
+
+
+public List <Dieta> ListaDieta(){
+         
+         Dieta dieta= null;
+         String sql = "SELECT nombre FROM dieta ";
+         PreparedStatement ps= null;
+         
+         List <Dieta> dietas = new ArrayList<>();
+                 
+        try{
+            ps = con.prepareStatement(sql);
+            
+            ResultSet rs= ps.executeQuery();
+           
+         while(rs.next()){
+             
+                dieta= new Dieta();
+                dieta.setNombre(rs.getString("nombre"));
+                
+                dietas.add(dieta);
+ 
+            }   
+         
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla Dieta");
+        }
+
+        
+         
+        return dietas;
+         
+    }
+
+
+
 }
