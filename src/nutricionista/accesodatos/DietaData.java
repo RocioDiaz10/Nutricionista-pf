@@ -105,30 +105,35 @@ public class DietaData {
         }
         
     }
-
-
-public List <Dieta> ListaDieta(){
+    
+    
+    
+     public List <Dieta> ListDieta(){
          
          Dieta dieta= null;
-         String sql = "SELECT nombre FROM dieta ";
+         String sql = "SELECT id_dieta,nombre, id_paciente, fechaInicio, fechaFinal, pesoInicio, pesoFinal FROM dieta ";
          PreparedStatement ps= null;
          
          List <Dieta> dietas = new ArrayList<>();
                  
         try{
             ps = con.prepareStatement(sql);
-            
             ResultSet rs= ps.executeQuery();
            
          while(rs.next()){
              
                 dieta= new Dieta();
+                dieta.setId_dieta(rs.getInt("id_dieta"));
                 dieta.setNombre(rs.getString("nombre"));
+                dieta.setId_paciente(rs.getInt("id_paciente"));
+                dieta.setFechaInicio(rs.getDate("fechaInicio").toLocalDate());
+                dieta.setFechaFin(rs.getDate("fechaFinal").toLocalDate());
+                dieta.setPesoInicio(rs.getDouble("pesoInicio"));
+                dieta.setPesoFinal(rs.getDouble("pesoFinal"));
+                
                 
                 dietas.add(dieta);
- 
             }   
-         
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla Dieta");
@@ -139,7 +144,4 @@ public List <Dieta> ListaDieta(){
         return dietas;
          
     }
-
-
-
 }

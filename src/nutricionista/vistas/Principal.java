@@ -40,6 +40,7 @@ public class Principal extends javax.swing.JFrame {
         jMFormularioDieta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jListaComidas = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
         jMenu5.setText("File");
@@ -115,6 +116,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jListaComidas);
 
+        jMenuItem5.setText("Comida por Dieta");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem5);
+
         jMenuBar1.add(jMenu4);
 
         jMenu7.setText("Salir");
@@ -167,13 +176,23 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMFormularioDietaActionPerformed
 
     private void jListaComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListaComidasActionPerformed
-     jDesktopPane1.removeAll();
-     jDesktopPane1.repaint(); 
-     ListaComidaDieta lcd= new ListaComidaDieta();
-     lcd.setVisible(true);
-      jDesktopPane1.add(lcd);
-     jDesktopPane1.moveToFront(lcd);
+//     jDesktopPane1.removeAll();
+//     jDesktopPane1.repaint(); 
+//     ListaComidaDieta lcd= new ListaComidaDieta();
+//     lcd.setVisible(true);
+//      jDesktopPane1.add(lcd);
+//     jDesktopPane1.moveToFront(lcd);
     }//GEN-LAST:event_jListaComidasActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+jDesktopPane1.removeAll();
+     jDesktopPane1.repaint(); 
+     ComidaXDieta cxd= new ComidaXDieta();
+     cxd.setVisible(true);
+      jDesktopPane1.add(cxd);
+     jDesktopPane1.moveToFront(cxd);
+    
+                                                }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,5 +248,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     // End of variables declaration//GEN-END:variables
 }
