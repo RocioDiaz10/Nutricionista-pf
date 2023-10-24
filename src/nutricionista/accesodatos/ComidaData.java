@@ -164,4 +164,68 @@ public class ComidaData {
          
     }
     
+     public Comida buscarComidaXCalorias(int calorias) {
+        
+        Comida comida=null;
+         String sql= "SELECT id_comida, nombre, detalle, cantCalorias FROM comida WHERE cantCalorias between ? and 0  ";
+        
+        PreparedStatement ps= null;
+                System.out.println("Por lo menos al metodo ingresa");
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, calorias);
+            ResultSet rs= ps.executeQuery();
+            
+            if(rs.next()){
+                comida= new Comida();
+                comida.setId_comida(rs.getInt("id_comida"));
+                comida.setNombre(rs.getString("nombre"));
+                comida.setDetalle(rs.getString("detalle"));
+                comida.setCantCalorias(rs.getInt("cantCalorias"));
+            }else{
+                JOptionPane.showMessageDialog(null, "No existen comida con esa cantidad de calorias");
+            }    
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro comida con esas calorias");
+        }
+            
+        return comida;
+    }
+     
+      public List <Comida> ListarComidasXCalorias(Comida comida, int calorias){
+         
+       
+        String sql = "SELECT id_comida, nombre,detalle,cantCalorias FROM comida WHERE cantCalorias between ? and 0  ";
+        PreparedStatement ps= null;
+         
+         ArrayList <Comida> comidas = new ArrayList<>();
+                 
+        try{
+            ps = con.prepareStatement(sql);
+            
+            ResultSet rs= ps.executeQuery();
+         
+         while(rs.next()){
+             comida= new Comida();
+             comida.setId_comida(rs.getInt("id_comida"));
+             comida.setNombre(rs.getString("nombre"));
+             comida.setDetalle(rs.getString("detalle"));
+             comida.setCantCalorias(rs.getInt("cantCalorias"));
+              
+               
+                comidas.add(comida);
+            }   
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla comida");
+        }
+
+        
+         
+        return comidas;
+         
+    }
+     
+     
 }

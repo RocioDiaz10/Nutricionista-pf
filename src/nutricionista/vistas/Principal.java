@@ -30,6 +30,7 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -39,7 +40,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMFormularioDieta = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jListaComidas = new javax.swing.JMenuItem();
+        jMBusquedaXComida = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
@@ -56,6 +57,8 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem3.setText("jMenuItem3");
 
         jMenuItem4.setText("jMenuItem4");
+
+        jMenu8.setText("jMenu8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,13 +111,13 @@ public class Principal extends javax.swing.JFrame {
 
         jMenu4.setText("Consulta");
 
-        jListaComidas.setText("Lista de Comidas");
-        jListaComidas.addActionListener(new java.awt.event.ActionListener() {
+        jMBusquedaXComida.setText("Busqueda por Comida");
+        jMBusquedaXComida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jListaComidasActionPerformed(evt);
+                jMBusquedaXComidaActionPerformed(evt);
             }
         });
-        jMenu4.add(jListaComidas);
+        jMenu4.add(jMBusquedaXComida);
 
         jMenuItem5.setText("Comida por Dieta");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
@@ -175,24 +178,25 @@ public class Principal extends javax.swing.JFrame {
      
     }//GEN-LAST:event_jMFormularioDietaActionPerformed
 
-    private void jListaComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListaComidasActionPerformed
-//     jDesktopPane1.removeAll();
-//     jDesktopPane1.repaint(); 
-//     ListaComidaDieta lcd= new ListaComidaDieta();
-//     lcd.setVisible(true);
-//      jDesktopPane1.add(lcd);
-//     jDesktopPane1.moveToFront(lcd);
-    }//GEN-LAST:event_jListaComidasActionPerformed
-
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-jDesktopPane1.removeAll();
-     jDesktopPane1.repaint(); 
-     ComidaXDieta cxd= new ComidaXDieta();
-     cxd.setVisible(true);
-      jDesktopPane1.add(cxd);
-     jDesktopPane1.moveToFront(cxd);
-    
-                                                }//GEN-LAST:event_jMenuItem5ActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        ComidaXDieta cxd= new ComidaXDieta();
+        cxd.setVisible(true);
+        jDesktopPane1.add(cxd);
+        jDesktopPane1.moveToFront(cxd);
+
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMBusquedaXComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBusquedaXComidaActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        BusquedaXComida bxc= new BusquedaXComida();
+        bxc.setVisible(true);
+        jDesktopPane1.add(bxc);
+        jDesktopPane1.moveToFront(bxc);
+               
+    }//GEN-LAST:event_jMBusquedaXComidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,7 +235,7 @@ jDesktopPane1.removeAll();
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenuItem jListaComidas;
+    private javax.swing.JMenuItem jMBusquedaXComida;
     private javax.swing.JMenuItem jMFormularioComida;
     private javax.swing.JMenuItem jMFormularioDieta;
     private javax.swing.JMenuItem jMPaciente;
@@ -242,6 +246,7 @@ jDesktopPane1.removeAll();
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
