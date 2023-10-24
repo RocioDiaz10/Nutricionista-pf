@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import nutricionista.entidades.Dieta;
 import nutricionista.entidades.Paciente;
 
 
@@ -165,5 +166,82 @@ public class PacienteData {
         return pacientes;
          
     }
+    
+    
+    public Paciente buscarPacientexPeso(int pesofin, int pesoini){
+        
+        Paciente paciente= null;
+        Dieta dieta=null;
+        String sql = "SELECT id_paciente,nombre,apellido, pesoInicial, pesoFinal from paciente p join dieta d where p.id_paciente= d=id_paciente, d.pesoFinal=? , d.pesoInicial= ?"
+                + "and d.pesoFinal > d.pesoInicial ";
+        PreparedStatement ps= null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, pesofin);
+            ps.setInt(2, pesoini);
+            ResultSet rs= ps.executeQuery();
+            
+            if(rs.next()){
+                paciente= new Paciente();
+                dieta= new Dieta();
+                
+                
+                paciente.setId_paciente(rs.getInt("id_paciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                dieta.setPesoInicio(rs.getInt("pesoInicial"));
+                dieta.setPesoFinal(rs.getInt("pesoFinal"));
+                
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe el paciente");
+            }    
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro un paciente con esos pesos");
+        }
+        
+        return paciente;
+}
+    
+    public List <Paciente> ListaPacientesxPeso(Paciente paciente, int pesofin, int pesoini){
+         
+          
+        Dieta dieta=null;
+         String sql = "SELECT id_paciente,nombre,apellido, pesoInicial, pesoFinal from paciente as p join dieta as d where p.id_paciente= d=id_paciente,  d.pesoFinal= ? > d.pesoInicial=? ";
+         PreparedStatement ps= null;
+         
+         List <Paciente> pacientes = new ArrayList<>();
+                 
+        try{
+            ps = con.prepareStatement(sql);
+             ps.setInt(1, pesofin);
+             ps.setInt(2, pesoini);
+            ResultSet rs= ps.executeQuery();
+           
+         while(rs.next()){
+             paciente= new Paciente();
+                dieta= new Dieta();
+                
+               paciente.setId_paciente(rs.getInt("id_paciente"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setApellido(rs.getString("apellido"));
+                dieta.setPesoInicio(rs.getInt("pesoInicial"));
+                dieta.setPesoFinal(rs.getInt("pesoFinal"));
+                
+                pacientes.add(paciente);
+            }   
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla Paciente Por Peso");
+        }
+
+        
+         
+        return pacientes;
+         
+    }
+    
     
 }

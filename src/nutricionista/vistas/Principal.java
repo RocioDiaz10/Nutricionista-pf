@@ -42,6 +42,7 @@ public class Principal extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMBusquedaXComida = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMBusquedaXPeso = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
         jMenu5.setText("File");
@@ -127,6 +128,14 @@ public class Principal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem5);
 
+        jMBusquedaXPeso.setText("Busqueda por Peso");
+        jMBusquedaXPeso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMBusquedaXPesoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMBusquedaXPeso);
+
         jMenuBar1.add(jMenu4);
 
         jMenu7.setText("Salir");
@@ -198,6 +207,16 @@ public class Principal extends javax.swing.JFrame {
                
     }//GEN-LAST:event_jMBusquedaXComidaActionPerformed
 
+    private void jMBusquedaXPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMBusquedaXPesoActionPerformed
+        jDesktopPane1.removeAll();
+        jDesktopPane1.repaint();
+        BusquedaXPeso bxp= new BusquedaXPeso();
+        bxp.setVisible(true);
+        jDesktopPane1.add(bxp);
+        jDesktopPane1.moveToFront(bxp);
+        
+    }//GEN-LAST:event_jMBusquedaXPesoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -236,6 +255,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenuItem jMBusquedaXComida;
+    private javax.swing.JMenuItem jMBusquedaXPeso;
     private javax.swing.JMenuItem jMFormularioComida;
     private javax.swing.JMenuItem jMFormularioDieta;
     private javax.swing.JMenuItem jMPaciente;

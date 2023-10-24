@@ -167,10 +167,10 @@ public class ComidaData {
      public Comida buscarComidaXCalorias(int calorias) {
         
         Comida comida=null;
-         String sql= "SELECT id_comida, nombre, detalle, cantCalorias FROM comida WHERE cantCalorias between ? and 0  ";
+         String sql= "SELECT id_comida, nombre, detalle, cantCalorias FROM comida WHERE cantCalorias between 0 and ?  ";
         
         PreparedStatement ps= null;
-                System.out.println("Por lo menos al metodo ingresa");
+               
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, calorias);
@@ -196,14 +196,14 @@ public class ComidaData {
       public List <Comida> ListarComidasXCalorias(Comida comida, int calorias){
          
        
-        String sql = "SELECT id_comida, nombre,detalle,cantCalorias FROM comida WHERE cantCalorias between ? and 0  ";
+        String sql = "SELECT id_comida, nombre,detalle,cantCalorias FROM comida WHERE cantCalorias between 0 and ?  ";
         PreparedStatement ps= null;
          
          ArrayList <Comida> comidas = new ArrayList<>();
                  
         try{
             ps = con.prepareStatement(sql);
-            
+            ps.setInt(1, calorias);
             ResultSet rs= ps.executeQuery();
          
          while(rs.next()){
