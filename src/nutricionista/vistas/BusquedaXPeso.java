@@ -22,32 +22,39 @@ import nutricionista.entidades.Paciente;
  * @author Jorge Santiago
  */
 public class BusquedaXPeso extends javax.swing.JInternalFrame {
-private Connection con=null;
-    
- 
+
+    private Connection con = null;
+
     private Dieta dieta;
-    private Comida comidaactual;
+    private Comida comida;
     private Paciente pacienteactual;
-    
-    
-    private List<Comida>comidas;
- 
+
+    private List<Comida> comidas;
+    private List<Dieta> PacxP;
     private ComidaData cData;
     private DietaData DData;
     private PacienteData pacData;
-    
-  private DefaultTableModel tabla= new DefaultTableModel();
+
+    private DefaultTableModel tabla = new DefaultTableModel();
+
     /**
      * Creates new form BusquedaXPeso
      */
     public BusquedaXPeso() {
-        cData = new ComidaData();
-        comidaactual= new Comida();
-        pacienteactual= new Paciente();
-        pacData= new PacienteData();
         initComponents();
+        dieta = new Dieta();
+        comida = new Comida();
+        Paciente pac = new Paciente();
+        cData = new ComidaData();
+        DData = new DietaData();
+        pacData = new PacienteData();
+        List<Paciente> ArrayList = null;
+        List<Paciente> Paciente = null;
+        PacxP = (ArrayList<Dieta>) pacData.ListaPacientesxPeso();
+        Paciente = (ArrayList<Paciente>) pacData.ListaPacientesxPeso2();
+
         armarTabla();
-        
+
     }
 
     /**
@@ -64,10 +71,8 @@ private Connection con=null;
         jScrollPane1 = new javax.swing.JScrollPane();
         jTPacientes = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTInicial = new javax.swing.JTextField();
-        jTFinal = new javax.swing.JTextField();
         jBuscar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -91,9 +96,7 @@ private Connection con=null;
         ));
         jScrollPane1.setViewportView(jTPacientes);
 
-        jLabel2.setText("Peso Inicial");
-
-        jLabel3.setText("Peso Final");
+        jLabel2.setText("No Cumplieron Objetivo");
 
         jBuscar.setText("Buscar");
         jBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -102,53 +105,58 @@ private Connection con=null;
             }
         });
 
+        jButton1.setText("Limpiar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTInicial, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTFinal, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBuscar)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTInicial, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addGap(153, 153, 153)
+                        .addComponent(jBuscar)
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton1))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(jLabel2)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(46, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35))))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jTInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBuscar)
+                    .addComponent(jButton1))
                 .addGap(18, 18, 18)
-                .addComponent(jBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(17, 17, 17))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -166,55 +174,68 @@ private Connection con=null;
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarActionPerformed
-       try{
-        int pesoini= Integer.parseInt(jTInicial.getText());
-        int pesofin= Integer.parseInt(jTFinal.getText());
-       
-        Paciente pacienteactual= pacData.buscarPacientexPeso(pesofin, pesoini);
-        pacienteactual=pacData.buscarPacientexPeso(pesofin, pesoini);
-       
-        List <Paciente> pacientes= (ArrayList) pacData.ListaPacientesxPeso(pacienteactual, pesofin, pesoini);
-       
-        for (Paciente p: pacientes){
-        tabla.addRow(new Object[] { p.getId_paciente(), p.getNombre(), p.getApellido(), dieta.getPesoInicio(),dieta.getPesoFinal() });
+        try {
+            //Double pesoFinal=Double.parseDouble(jTInicial.getText());
+            //int pesofin= Integer.parseInt(jTFinal.getText());
+
+            //Paciente pacienteactual= pacData.buscarPacientexPeso(pesoFinal);
+            //pacienteactual=pacData.buscarPacientexPeso(pesofin, pesoini);
+//        Paciente paciente=null;
+//       
+//        List <Paciente> pacientes= (ArrayList) pacData.ListaPacientesxPeso(pesoFinal);
+//       
+//        for (Paciente p: pacientes){
+//        tabla.addRow(new Object[] { p.getId_paciente(), p.getNombre(), p.getApellido(), dieta.getPesoInicio(),dieta.getPesoFinal() });
+//        }
+//         Materia selec= (Materia)jCMaterias.getSelectedItem();
+            List<Paciente> Paciente = (ArrayList) pacData.ListaPacientesxPeso2();
+
+            List<Dieta> PacxP = (ArrayList) pacData.ListaPacientesxPeso();
+
+            for (Dieta dieta : PacxP) {
+                Paciente paciente=pacData.buscarPacienteID(dieta.getId_paciente());
+                tabla.addRow(new Object[]{dieta.getId_paciente(),paciente.getNombre(), paciente.getApellido(), dieta.getPesoInicio(), dieta.getPesoFinal()});
+            }
+
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un peso Valido");
         }
-        
-        }catch (NumberFormatException ex){
-          JOptionPane.showMessageDialog(this,"Debe ingresar un peso Valido");
-      }
+
     }//GEN-LAST:event_jBuscarActionPerformed
 
-     private void armarTabla(){
-    ArrayList<Object> filaCabecera =new ArrayList<>();
-    filaCabecera.add("ID_PACIENTE");
-    filaCabecera.add("NOMBRE");
-    filaCabecera.add("APELLIDO");
-    filaCabecera.add("PESO INICIAL");
-    filaCabecera.add("PESO FINAL");
-    for(Object it: filaCabecera){
-        tabla.addColumn(it);
-    
-    }
-    jTPacientes.setModel(tabla);
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        borrarFilasTablas();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-}
+    private void armarTabla() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ID_PACIENTE");
+        filaCabecera.add("NOMBRE");
+        filaCabecera.add("APELLIDO");
+        filaCabecera.add("PESO INICIAL");
+        filaCabecera.add("PESO FINAL");
+        for (Object it : filaCabecera) {
+            tabla.addColumn(it);
 
-     private void borrarFilasTablas(){
-    int indice=tabla.getRowCount()-1;
-    for (int i =indice ;i>=0;i--){
-        tabla.removeRow(i);
+        }
+        jTPacientes.setModel(tabla);
+
     }
 
-}
+    private void borrarFilasTablas() {
+        int indice = tabla.getRowCount() - 1;
+        for (int i = indice; i >= 0; i--) {
+            tabla.removeRow(i);
+        }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBuscar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFinal;
-    private javax.swing.JTextField jTInicial;
     private javax.swing.JTable jTPacientes;
     // End of variables declaration//GEN-END:variables
 }

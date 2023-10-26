@@ -131,7 +131,38 @@ public class PacienteData {
         
         return paciente;
 }
-    
+     public Paciente buscarPacienteID(int id){
+        
+        Paciente paciente= null;
+        String sql = "SELECT id_paciente, dni, apellido, nombre, domicilio, celular from paciente where id_paciente= ?  ";
+        PreparedStatement ps= null;
+        
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs= ps.executeQuery();
+            
+            if(rs.next()){
+                paciente= new Paciente();
+                
+                
+                paciente.setDni(rs.getInt("dni"));
+                paciente.setApellido(rs.getString("apellido"));
+                paciente.setNombre(rs.getString("nombre"));
+                paciente.setDomicilio(rs.getString("domicilio"));
+                paciente.setCelular(rs.getInt("celular"));
+                
+                
+            }else{
+                JOptionPane.showMessageDialog(null, "No existe el paciente");
+            }    
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se encontro un paciente con ese DNI");
+        }
+        
+        return paciente;
+     }
     public List <Paciente> ListaPacientes(){
          
          Paciente paciente= null;
@@ -168,69 +199,115 @@ public class PacienteData {
     }
     
     
-    public Paciente buscarPacientexPeso(int pesofin, int pesoini){
+//    public Paciente buscarPacientexPeso(int pesoFinal, int pesoInicio){
+//        
+//        Paciente paciente= null;
+//        Dieta dieta=null;
+//        String sql = "SELECT nombre,apellido, pesoInicio, pesoFinal from paciente join dieta ON ( paciente.id_paciente = dieta=id_paciente) where (dieta.pesoFinal=? > dieta.pesoInicio=?) ";
+//        PreparedStatement ps= null;
+//        
+//        try {
+//            ps = con.prepareStatement(sql);
+//            ps.setInt(1, pesoFinal);
+//            ps.setInt(2, pesoInicio);
+//            ResultSet rs= ps.executeQuery();
+//            
+//            if(rs.next()){
+//                paciente= new Paciente();
+//                dieta= new Dieta();
+//                
+//                
+//                paciente.setId_paciente(rs.getInt("id_paciente"));
+//                paciente.setNombre(rs.getString("nombre"));
+//                paciente.setApellido(rs.getString("apellido"));
+//                dieta.setPesoInicio(rs.getInt("pesoInicio"));
+//                dieta.setPesoFinal(rs.getInt("pesoFinal"));
+//                
+//                
+//            }else{
+//                JOptionPane.showMessageDialog(null, "No existe el paciente");
+//            }    
+//            ps.close();
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "No se encontro un paciente con esos pesos");
+//        }
+//        
+//        return paciente;
+//}
+    
+    public List <Dieta> ListaPacientesxPeso(){
         
-        Paciente paciente= null;
-        Dieta dieta=null;
-        String sql = "SELECT id_paciente,nombre,apellido, pesoInicial, pesoFinal from paciente p join dieta d where p.id_paciente= d=id_paciente, d.pesoFinal=? , d.pesoInicial= ?"
-                + "and d.pesoFinal > d.pesoInicial ";
-        PreparedStatement ps= null;
+  List <Dieta> dietas = new ArrayList<>();
+  
         
-        try {
+         String sql ="SELECT p.id_paciente, p.nombre,p.apellido, d.pesoInicio, d.pesoFinal from paciente p join dieta d ON (p.id_paciente = d.id_paciente)"
+                 + " WHERE (d.pesoFinal > d.pesoInicio)";
+                 
+         PreparedStatement ps= null;
+         
+        try{
             ps = con.prepareStatement(sql);
-            ps.setInt(1, pesofin);
-            ps.setInt(2, pesoini);
+           
+           
             ResultSet rs= ps.executeQuery();
-            
-            if(rs.next()){
-                paciente= new Paciente();
+          
+           
+             while (rs.next()) {
+              Paciente paciente= new Paciente();
+                Dieta dieta = new Dieta();
+                
+
+                dieta.setId_paciente(rs.getInt("id_paciente"));
+              paciente.setNombre(rs.getString("nombre"));
+               paciente.setApellido(rs.getString("apellido"));
+               dieta.setPesoInicio(rs.getDouble("pesoInicio"));
+                dieta.setPesoFinal(rs.getDouble("pesoFinal"));
+
+                dietas.add(dieta);
+               
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar los datos a la tabla Paciente Por Peso111");
+        }
+
+        
+         
+        return dietas;
+
+    
+}
+    public List <Paciente> ListaPacientesxPeso2(){
+         
+        
+        Dieta dieta=null;
+         String sql = "SELECT p.id_paciente,p.nombre,p.apellido, d.pesoInicio, d.pesoFinal "
+                 + "from paciente as p join dieta as d on (p.id_paciente = d.id_paciente) "
+                + " WHERE (d.pesoFinal > d.pesoInicio ) " ;
+         PreparedStatement ps= null;
+         
+         List <Paciente> pacientes = new ArrayList<>();
+         List <Dieta> dietas= new ArrayList<>();        
+        try{
+            ps = con.prepareStatement(sql);
+//             ps.setInt(1, pesofin);
+//             ps.setInt(2, pesoini);
+            ResultSet rs= ps.executeQuery();
+                while(rs.next()){
+                Paciente paciente= new Paciente();
                 dieta= new Dieta();
                 
                 
                 paciente.setId_paciente(rs.getInt("id_paciente"));
                 paciente.setNombre(rs.getString("nombre"));
                 paciente.setApellido(rs.getString("apellido"));
-                dieta.setPesoInicio(rs.getInt("pesoInicial"));
-                dieta.setPesoFinal(rs.getInt("pesoFinal"));
-                
-                
-            }else{
-                JOptionPane.showMessageDialog(null, "No existe el paciente");
-            }    
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se encontro un paciente con esos pesos");
-        }
-        
-        return paciente;
-}
-    
-    public List <Paciente> ListaPacientesxPeso(Paciente paciente, int pesofin, int pesoini){
-         
-          
-        Dieta dieta=null;
-         String sql = "SELECT id_paciente,nombre,apellido, pesoInicial, pesoFinal from paciente as p join dieta as d where p.id_paciente= d=id_paciente,  d.pesoFinal= ? > d.pesoInicial=? ";
-         PreparedStatement ps= null;
-         
-         List <Paciente> pacientes = new ArrayList<>();
-                 
-        try{
-            ps = con.prepareStatement(sql);
-             ps.setInt(1, pesofin);
-             ps.setInt(2, pesoini);
-            ResultSet rs= ps.executeQuery();
-           
-         while(rs.next()){
-             paciente= new Paciente();
-                dieta= new Dieta();
-                
-               paciente.setId_paciente(rs.getInt("id_paciente"));
-                paciente.setNombre(rs.getString("nombre"));
-                paciente.setApellido(rs.getString("apellido"));
-                dieta.setPesoInicio(rs.getInt("pesoInicial"));
+                dieta.setPesoInicio(rs.getInt("pesoInicio"));
                 dieta.setPesoFinal(rs.getInt("pesoFinal"));
                 
                 pacientes.add(paciente);
+               
+                
             }   
             ps.close();
         } catch (SQLException ex) {
@@ -240,8 +317,8 @@ public class PacienteData {
         
          
         return pacientes;
-         
-    }
-    
     
 }
+}
+
+
