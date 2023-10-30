@@ -96,12 +96,13 @@ public class ComidaData {
             ps.setInt(4, comida.getId_comida());
             
             int exito = ps.executeUpdate();
+            
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificacion realizada");
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "no se pudo ingresar a la tabla COMIDA");
+            JOptionPane.showMessageDialog(null, "No se pudo ingresar a la tabla COMIDA");
         }
 
     }

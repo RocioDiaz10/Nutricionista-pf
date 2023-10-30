@@ -56,28 +56,60 @@ public class PacienteData {
     
     
     public void modificarPaciente(Paciente paciente) {
+        
+//        String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, celular = ? "
+//                + " WHERE id_paciente = ? ";
+//
+//        try {
+//            PreparedStatement ps=con.prepareStatement(sql);
+//            
+//            ps.setString(1, paciente.getNombre());
+//            ps.setString(2, paciente.getApellido());
+//            ps.setInt(3, paciente.getDni());
+//            ps.setString(4,paciente.getDomicilio());
+//            ps.setInt(5, paciente.getCelular());
+//            ps.setInt(6, paciente.getId_paciente());
+//            
+//            
+//            int exito = ps.executeUpdate();
+//            System.out.println(ps.executeUpdate());
+//            
+//            if (exito == 1) {
+//                JOptionPane.showMessageDialog(null, "Modificacion realizada");
+//            }
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "No se pudo ingresar a la tabla PACIENTE");
+//        }
 
-        String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, celular = ? "
-                + "WHERE id_paciente = ?";
+        
+    
+    String sql = "UPDATE paciente SET nombre = ?, apellido = ?, dni = ?, domicilio = ?, celular = ? "
+            + " WHERE id_paciente = ?";
 
-        try {
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.setString(1, paciente.getNombre());
-            ps.setString(2, paciente.getApellido());
-            ps.setInt(3, paciente.getDni());
-            ps.setString(4, paciente.getDomicilio());
-            ps.setInt(5, paciente.getCelular());
-            ps.setInt(6, paciente.getId_paciente());
-            int exito = ps.executeUpdate();
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modificacion realizada");
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "No se pudo ingresar a la tabla PACIENTE");
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        
+        ps.setString(1, paciente.getNombre());
+        ps.setString(2, paciente.getApellido());
+        ps.setInt(3, paciente.getDni());
+        ps.setString(4, paciente.getDomicilio());
+        ps.setInt(5, paciente.getCelular());
+        ps.setInt(6, paciente.getId_paciente());
+        
+        int exito = ps.executeUpdate();
+        System.out.println(ps.executeUpdate());
+        if (exito == 1) {
+            JOptionPane.showMessageDialog(null, "Modificación realizada");
         }
 
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "No se pudo modificar la tabla PACIENTE");
     }
+
+}
+        
+    
     
     public void eliminarPaciente(int dni){
         

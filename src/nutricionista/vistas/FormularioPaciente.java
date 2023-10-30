@@ -294,7 +294,7 @@ public class FormularioPaciente extends javax.swing.JInternalFrame {
      }catch(NumberFormatException nf){
         JOptionPane.showMessageDialog(this, "ERROR. Debe ingresar el numero de DNI");
     }  
-        
+//       
            
     }//GEN-LAST:event_jBModificarActionPerformed
 

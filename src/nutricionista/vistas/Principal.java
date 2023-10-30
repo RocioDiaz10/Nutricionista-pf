@@ -5,6 +5,10 @@
  */
 package nutricionista.vistas;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author facus
@@ -31,7 +35,14 @@ public class Principal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagen/fondo.jpg"));
+        Image image = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMFormularioComida = new javax.swing.JMenuItem();
@@ -43,7 +54,6 @@ public class Principal extends javax.swing.JFrame {
         jMBusquedaXComida = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMBusquedaXPeso = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
 
         jMenu5.setText("File");
         jMenuBar2.add(jMenu5);
@@ -137,9 +147,6 @@ public class Principal extends javax.swing.JFrame {
         jMenu4.add(jMBusquedaXPeso);
 
         jMenuBar1.add(jMenu4);
-
-        jMenu7.setText("Salir");
-        jMenuBar1.add(jMenu7);
 
         setJMenuBar(jMenuBar1);
 
@@ -265,7 +272,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;

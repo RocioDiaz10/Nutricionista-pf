@@ -73,7 +73,6 @@ public class ComidaXDieta extends javax.swing.JInternalFrame {
         jBexcluir = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTcomidas = new javax.swing.JTable();
-        jBmodificar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -167,13 +166,6 @@ public class ComidaXDieta extends javax.swing.JInternalFrame {
         ));
         jScrollPane4.setViewportView(jTcomidas);
 
-        jBmodificar.setText("MODIFICAR");
-        jBmodificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBmodificarActionPerformed(evt);
-            }
-        });
-
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jCDieta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -182,7 +174,6 @@ public class ComidaXDieta extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jBincluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jBexcluir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane4, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jBmodificar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -194,9 +185,8 @@ public class ComidaXDieta extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBexcluir)
-                    .addComponent(jBincluir)
-                    .addComponent(jBmodificar))
-                .addGap(18, 18, 18))
+                    .addComponent(jBincluir))
+                .addGap(36, 36, 36))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +228,7 @@ public class ComidaXDieta extends javax.swing.JInternalFrame {
                         .addComponent(jBincluir)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBexcluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBmodificar)
-                        .addGap(23, 23, 23))))
+                        .addGap(51, 51, 51))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -310,16 +298,10 @@ int filasSeleccionadas=jTcomidas.getSelectedRow();
         }
                 }//GEN-LAST:event_jBexcluirActionPerformed
 
-    private void jBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmodificarActionPerformed
-
-
-    }//GEN-LAST:event_jBmodificarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBexcluir;
     private javax.swing.JButton jBincluir;
-    private javax.swing.JButton jBmodificar;
     private javax.swing.JComboBox<Dieta> jCDieta;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
